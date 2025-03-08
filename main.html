@@ -9,6 +9,35 @@
 <body>
 	<!-- the entire body must be written by student -->
     <script type="text/javascript" src="./script.js">
+		<div class="container">
+        <h2>Number to Roman Numeral Converter</h2>
+        <input type="number" id="numberInput" placeholder="Enter a number (1-3999)">
+        <button onclick="convertToRoman()">Convert</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function intToRoman(num) {
+            if (num < 1 || num > 3999) return "Invalid input";
+
+            const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+            const symbols = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+
+            let roman = "";
+            for (let i = 0; i < values.length; i++) {
+                while (num >= values[i]) {
+                    roman += symbols[i];
+                    num -= values[i];
+                }
+            }
+            return roman;
+        }
+
+        function convertToRoman() {
+            const num = document.getElementById("numberInput").value;
+            const result = intToRoman(parseInt(num));
+            document.getElementById("output").innerText = result;
+        }
    </script>
 
 </body>
